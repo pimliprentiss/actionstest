@@ -1,20 +1,20 @@
 name: imagepush
-on:
-  push:
-    branches:
-      - 'master'
+on:  workflow_dispatch
 jobs: 
-  build_and_push:
+  version_tag:
     runs-on: ubuntu
+    defaults:
+      run:
+        shell: bash
     steps: 
       - name: checkout
-        action: 
+        uses: actions/checkout@v2.4.2
       - name: bump_version
-        run: 
+        run: ./bumpversion.sh 
+      - name: set_tag_version
+        run: |
+          echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
       - name: tag_repo
-        run: 
-      - name: build
-        action:
-      - name: push
-        action: 
+        run: echo "$GITHUB_ENV
+
 
