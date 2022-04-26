@@ -18,7 +18,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2.4.2
         with:
-          ref: v.1.4
+          ref: v1.4
       - name: print_ref
         run: echo ${{ github.ref_name }}
         
