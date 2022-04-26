@@ -1,13 +1,13 @@
 name: dockerimagepush
-on: 
-  push:
-    tags:
-      - 'v*'
-    paths-ignore:
-      - .github/**
-      - bumpversion.sh
-      - VERSION
-      - .?[dD]ocker**
+on: workflow_run 
+#  push:
+#    tags:
+#      - 'v*'
+#    paths-ignore:
+#      - .github/**
+#      - bumpversion.sh
+#      - VERSION
+#      - .?[dD]ocker**
 jobs: 
   build_and_push:
     runs-on: ubuntu
@@ -17,8 +17,11 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v2.4.2
+      - name: Output values
+        run: |
+          echo ${{ secrets.DOCKERHUB_USER }}
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v1.14.1 
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}  
