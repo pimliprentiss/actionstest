@@ -3,6 +3,11 @@ on:
   push:
     branches: 
       - main
+    paths-ignore:
+      - .github/**
+      - bumpversion.sh
+      - VERSION
+      - .?[dD]ocker**
 jobs: 
   version_tag:
     runs-on: ubuntu
