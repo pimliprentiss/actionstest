@@ -1,13 +1,13 @@
 name: dockerimagepush
-on: workflow_dispatch 
-#  push:
-#    tags:
-#      - 'v*'
-#    paths-ignore:
-#      - .github/**
-#      - bumpversion.sh
-#      - VERSION
-#      - .?[dD]ocker**
+on: 
+  push:
+    tags:
+      - 'v*'
+    paths-ignore:
+      - .github/**
+      - bumpversion.sh
+      - VERSION
+      - .?[dD]ocker**
 jobs: 
   build_and_push:
     runs-on: ubuntu
@@ -15,15 +15,20 @@ jobs:
       run:
         shell: bash
     steps: 
-      - name: fix_permissions
-        run:  |
-          sudo chmod -R ugo+rwX .
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2.4.2
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
         with:
-          ref: refs/tags/v1.4
-      - name: print_ref
-        run: echo ${{ github.ref_name }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}  
+      - name: Build and push image
+        uses: docker/build-push-action@v2.10.0
+        with:
+          push: true
+          tags: |
+            "rufinito/actionstest:${{ github.ref_name }}"
+            "rufinito/actionstest:latest"
         
 
 
