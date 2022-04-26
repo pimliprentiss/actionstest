@@ -15,11 +15,13 @@ jobs:
         run: |
           echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
       - name: commit_new_version
-        uses: zwaldowski/git-commit-action@v1
+        uses: github-actions-x/commit@v2.9
         with: 
           commit_message: "Automated commit for version ${{ env.TAG_VERSION }}"
-          author_email: "junior.montero@constantcontact.com" 
+          name: "${{ github.actor }}" 
       - name: tag_repo
-        run: echo "${{ env.TAG_VERSION }}"
+        uses: actions-ecosystem/action-push-tag@v1.0.0
+        with: 
+          tag: "v${{ env.TAG_VERSION }}"
 
 
