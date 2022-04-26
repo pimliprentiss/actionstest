@@ -11,6 +11,8 @@ on:
 jobs: 
   version_tag:
     runs-on: ubuntu
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
     defaults:
       run:
         shell: bash
@@ -20,8 +22,10 @@ jobs:
       - name: Bump Version
         run: ./bumpversion.sh 
       - name: Set tag version
+        id: version
         run: |
           echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+          echo "::set-output name=tag::$(cat VERSION)"
       - name: Commit new Version
         uses: github-actions-x/commit@v2.9
         with: 
@@ -32,7 +36,8 @@ jobs:
         with: 
           tag: "v${{ env.TAG_VERSION }}"
   build_and_push:  
-        uses: ./.github/workflows/imagepush.yaml
-        with:
-          TAG_VERSION: "${{ env.TAG_VERSION }}"
+    needs: version_tag
+    uses: ./.github/workflows/imagepush.yaml
+    with:
+      TAG_VERSION: "${{ needs.version_tag.outputs.tag }}"
 
