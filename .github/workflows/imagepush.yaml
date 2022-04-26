@@ -15,13 +15,13 @@ jobs:
       run:
         shell: bash
     steps: 
+      - name: fix_permissions
+        run:  |
+          chmod -R ugo+rwX .
       - name: checkout
         uses: actions/checkout@v2.4.2
         with:
           ref: refs/tags/v1.4
-      - name: fix_permissions
-        run:  |
-          chmod -R ugo+rwX .
       - name: print_ref
         run: echo ${{ github.ref_name }}
         
