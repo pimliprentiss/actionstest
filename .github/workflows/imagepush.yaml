@@ -17,7 +17,7 @@ jobs:
         with:
           push: true
           tags: |
-            "rufinito/actionstest:${{ env.TAG_VERSION }}"
+            "rufinito/actionstest:v${{ env.TAG_VERSION }}"
             "rufinito/actionstest:latest"
         
 
