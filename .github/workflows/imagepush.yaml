@@ -17,8 +17,8 @@ jobs:
     steps: 
       - name: checkout
         uses: actions/checkout@v2.4.2
- #:       with:
- #         ref: v1.4
+        with:
+          ref: refs/tags/v1.4
       - name: print_ref
         run: echo ${{ github.ref_name }}
         
