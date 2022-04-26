@@ -15,8 +15,8 @@ jobs:
       run:
         shell: bash
     steps: 
-      - name: Checkout
-        uses: actions/checkout@v2.4.2
+#      - name: Checkout
+ #       uses: actions/checkout@v2.4.2
       - name: Output values
         run: |
           echo ${{ secrets.DOCKERHUB_USER }}
