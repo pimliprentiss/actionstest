@@ -1,5 +1,10 @@
 name: dockerimagepush
-on: workflow_call 
+on: 
+  workflow_call: 
+    inputs:
+      TAG_VERSION:
+        required: true
+        type: string
 jobs: 
   build_and_push:
     runs-on: ubuntu
@@ -17,7 +22,7 @@ jobs:
         with:
           push: true
           tags: |
-            "rufinito/actionstest:v${{ env.TAG_VERSION }}"
+            "rufinito/actionstest:v${{ inputs.TAG_VERSION }}"
             "rufinito/actionstest:latest"
         
 
