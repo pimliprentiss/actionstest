@@ -3,6 +3,11 @@ on: workflow_dispatch
 #  push:
 #    tags:
 #      - 'v*'
+#    paths-ignore:
+#      - .github/**
+#      - bumpversion.sh
+#      - VERSION
+#      - .?[dD]ocker**
 jobs: 
   build_and_push:
     runs-on: ubuntu
