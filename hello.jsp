@@ -12,7 +12,7 @@
 <td>
 <h1>Sample Application JSP Page</h1>
 This is the output of a JSP page that is part of the Hello, World
-application. Hi Heather, how u doin?.
+application. Hi Heather.
 </td>
 </tr>
 </table>
