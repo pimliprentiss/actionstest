@@ -15,20 +15,21 @@ jobs:
       run:
         shell: bash
     steps: 
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2.4.2
-      - name: bump_version
+      - name: Bump Version
         run: ./bumpversion.sh 
-      - name: set_tag_version
+      - name: Set tag version
         run: |
           echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-      - name: commit_new_version
+      - name: Commit new Version
         uses: github-actions-x/commit@v2.9
         with: 
           commit-message: "Automated commit for version ${{ env.TAG_VERSION }}"
           name: "${{ github.actor }}" 
-      - name: tag_repo
+      - name: Create and push new version tag
         uses: actions-ecosystem/action-push-tag@v1.0.0
         with: 
           tag: "v${{ env.TAG_VERSION }}"
+      - uses: ./.github/workflows/imagepush.yaml
 
