@@ -24,8 +24,9 @@ jobs:
       - name: Set tag version
         id: version
         run: |
-          echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-          echo "::set-output name=tag::$(cat VERSION)"
+          TAG="v$(cat VERSION)"
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "::set-output name=tag::$TAG"
       - name: Commit new Version
         uses: github-actions-x/commit@v2.9
         with: 
@@ -34,10 +35,13 @@ jobs:
       - name: Create and push new version tag
         uses: actions-ecosystem/action-push-tag@v1.0.0
         with: 
-          tag: "v${{ env.TAG_VERSION }}"
+          tag: "${{ env.TAG }}"
   build_and_push:  
     needs: version_tag
     uses: ./.github/workflows/imagepush.yaml
     with:
       TAG_VERSION: "${{ needs.version_tag.outputs.tag }}"
+    secrets:
+      username: ${{ secrets.DOCKER_USER }}
+      password: ${{ secrets.DOCKER_TOKEN }} 
 
