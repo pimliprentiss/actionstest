@@ -31,7 +31,8 @@ jobs:
         uses: actions-ecosystem/action-push-tag@v1.0.0
         with: 
           tag: "v${{ env.TAG_VERSION }}"
-      - uses: ./.github/workflows/imagepush.yaml
+  build_and_push:  
+        uses: ./.github/workflows/imagepush.yaml
         with:
           TAG_VERSION: "v${{ env.TAG_VERSION }}"
 
