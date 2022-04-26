@@ -1,7 +1,10 @@
-name: imagepush
-on: workflow_dispatch
+name: dockerimagepush
+on: workflow_dispatch 
+#  push:
+#    tags:
+#      - 'v*'
 jobs: 
-  version_tag:
+  build_and_push:
     runs-on: ubuntu
     defaults:
       run:
@@ -9,19 +12,10 @@ jobs:
     steps: 
       - name: checkout
         uses: actions/checkout@v2.4.2
-      - name: bump_version
-        run: ./bumpversion.sh 
-      - name: set_tag_version
-        run: |
-          echo "TAG_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-      - name: commit_new_version
-        uses: github-actions-x/commit@v2.9
-        with: 
-          commit-message: "Automated commit for version ${{ env.TAG_VERSION }}"
-          name: "${{ github.actor }}" 
-      - name: tag_repo
-        uses: actions-ecosystem/action-push-tag@v1.0.0
-        with: 
-          tag: "v${{ env.TAG_VERSION }}"
+        with:
+          ref: v.1.4
+      - name: print_ref
+        run: echo ${{ github.ref_name }}
+        
 
 
