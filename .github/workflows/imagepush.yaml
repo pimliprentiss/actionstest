@@ -17,7 +17,7 @@ jobs:
       - name: commit_new_version
         uses: github-actions-x/commit@v2.9
         with: 
-          commit_message: "Automated commit for version ${{ env.TAG_VERSION }}"
+          commit-message: "Automated commit for version ${{ env.TAG_VERSION }}"
           name: "${{ github.actor }}" 
       - name: tag_repo
         uses: actions-ecosystem/action-push-tag@v1.0.0
