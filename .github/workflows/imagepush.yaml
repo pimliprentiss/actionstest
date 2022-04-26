@@ -1,5 +1,9 @@
 name: imagepush
-on:  workflow_dispatch
+on: 
+  push:
+    branches: 
+      - main
+#on:  workflow_dispatch
 jobs: 
   version_tag:
     runs-on: ubuntu
