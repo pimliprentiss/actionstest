@@ -1,9 +1,8 @@
 name: version_and_tag_bump 
-#on: 
-#  push:
-#    branches: 
-#      - main
-on:  workflow_dispatch
+on: 
+  push:
+    branches: 
+      - main
 jobs: 
   version_tag:
     runs-on: ubuntu
