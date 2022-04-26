@@ -1,22 +1,11 @@
 name: dockerimagepush
-on: workflow_dispatch 
-#  push:
-#    tags:
-#      - 'v*'
-#    paths-ignore:
-#      - .github/**
-#      - bumpversion.sh
-#      - VERSION
-#      - .?[dD]ocker**
+on: workflow_call 
 jobs: 
   build_and_push:
     runs-on: ubuntu
-    defaults:
-      run:
-        shell: bash
     steps: 
-#      - name: Checkout
- #       uses: actions/checkout@v2.4.2
+      - name: Checkout
+        uses: actions/checkout@v2.4.2
       - name: Output values
         run: |
           echo ${{ secrets.DOCKERHUB_USER }}
@@ -30,7 +19,7 @@ jobs:
         with:
           push: true
           tags: |
-            "rufinito/actionstest:${{ github.ref_name }}"
+            "rufinito/actionstest:${{ env.TAG_VERSION }}"
             "rufinito/actionstest:latest"
         
 
