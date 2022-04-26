@@ -32,4 +32,6 @@ jobs:
         with: 
           tag: "v${{ env.TAG_VERSION }}"
       - uses: ./.github/workflows/imagepush.yaml
+        with:
+          TAG_VERSION: "v${{ env.TAG_VERSION }}
 
