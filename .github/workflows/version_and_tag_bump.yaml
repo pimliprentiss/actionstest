@@ -34,5 +34,5 @@ jobs:
   build_and_push:  
         uses: ./.github/workflows/imagepush.yaml
         with:
-          TAG_VERSION: "v${{ env.TAG_VERSION }}"
+          TAG_VERSION: "v${{ inputs.TAG_VERSION }}"
 
