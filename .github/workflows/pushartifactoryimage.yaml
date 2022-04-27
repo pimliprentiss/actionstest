@@ -1,4 +1,4 @@
-name: dockerimagepush
+name: pushartifactoryimage
 on: 
   workflow_call: 
     inputs:
