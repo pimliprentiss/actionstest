@@ -33,4 +33,4 @@ jobs:
           push: true
           tags: |
             "${{ env.REGISTRY }}/${{ env.REPO }}/${{ inputs.APP }}:${{ inputs.TAG_VERSION }}"
-            "${{ env.REGISTRY }}/$${{ env.REPO }}/${{ inputs.APP }}:latest"
+            "${{ env.REGISTRY }}/${{ env.REPO }}/${{ inputs.APP }}:latest"
