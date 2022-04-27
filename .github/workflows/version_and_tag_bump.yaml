@@ -26,7 +26,7 @@ jobs:
         id: version
         run: |
           TAG="v$(cat VERSION)"
-          REPO="$(echo ${{ github.repository }} | cut -d '/' -f 2)"
+          REPO="$(awk -F "/" '{print $NF}' <<< ${{ github.repository }})"
           echo "TAG=$TAG" >> $GITHUB_ENV
           echo "::set-output name=tag::$TAG"
           echo "::set-output name=repo::$REPO"
