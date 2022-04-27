@@ -39,15 +39,15 @@ jobs:
         uses: actions-ecosystem/action-push-tag@v1.0.0
         with: 
           tag: "${{ env.TAG }}"
-  build_and_push_to_docker_registry:  
-    needs: version_tag
-    uses: ./.github/workflows/imagepush.yaml
-    with:
-      TAG_VERSION: "${{ needs.version_tag.outputs.tag }}"
-      APP: "${{ needs.version_tag.outputs.repo }}"
-    secrets:
-      username: ${{ secrets.DOCKER_USER }}
-      password: ${{ secrets.DOCKER_TOKEN }}
+#  build_and_push_to_docker_registry:  
+ #   needs: version_tag
+  #  uses: ./.github/workflows/imagepush.yaml
+   # with:
+    #  TAG_VERSION: "${{ needs.version_tag.outputs.tag }}"
+    #  APP: "${{ needs.version_tag.outputs.repo }}"
+    #secrets:
+     # username: ${{ secrets.DOCKER_USER }}
+      #password: ${{ secrets.DOCKER_TOKEN }}
   build_and_push_to_artifactory:  
     needs: version_tag
     uses: ./.github/workflows/pushartifactoryimage.yaml
