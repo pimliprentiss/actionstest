@@ -1,0 +1,29 @@
+name: dockerimagepush
+on: 
+  workflow_call: 
+    inputs:
+      TAG_VERSION:
+        required: true
+        type: string
+    secrets:
+      username:
+        required: true
+      password:
+        required: true
+      
+jobs: 
+  build_and_push:
+    runs-on: ubuntu
+    steps: 
+      - name: Login to DockerHub
+        uses: docker/login-action@v1.14.1 
+        with:
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}  
+      - name: Build and push image
+        uses: docker/build-push-action@v2.10.0
+        with:
+          push: true
+          tags: |
+            "docker-sandbox/actionstest:${{ inputs.TAG_VERSION }}"
+            "docker-sandbox/actionstest:latest"
