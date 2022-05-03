@@ -10,7 +10,7 @@ on:
       - .?[dD]ocker**
 jobs: 
   version_tag:
-    runs-on: ubuntu
+    runs-on: version
     outputs:
       tag: ${{ steps.version.outputs.tag }}
       repo: ${{ steps.version.outputs.repo }}
