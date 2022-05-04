@@ -38,7 +38,7 @@ jobs:
       - name: Create and push new version tag
         uses: actions-ecosystem/action-push-tag@v1.0.0
         with: 
-          tag: "${{ env.TAG }}"
+          tag: "${{ steps.version.outputs.tag }}"
 #  build_and_push_to_docker_registry:  
 #    needs: version_tag
 #    uses: ./.github/workflows/imagepush.yaml
