@@ -13,27 +13,27 @@ jobs:
     runs-on: version
     outputs:
       tag: ${{ steps.version.outputs.tag }}
-      repo: ${{ steps.version.outputs.repo }}
+      repo: ${{ steps.repo.outputs.repository }}
     defaults:
       run:
         shell: bash
     steps: 
       - name: Checkout
         uses: actions/checkout@v2.4.2
+      - name: Get repo name
+        id: repo
+        uses: pimliprentiss/getreponame@v1
       - name: Bump Version
         run: ./bumpversion.sh 
-      - name: Set outputs and environment variables
+      - name: Set tag version
         id: version
         run: |
           TAG="v$(cat VERSION)"
-          REPO="$(awk -F "/" '{print $NF}' <<< ${{ github.repository }})"
-          echo "TAG=$TAG" >> $GITHUB_ENV
           echo "::set-output name=tag::$TAG"
-          echo "::set-output name=repo::$REPO"
       - name: Commit new Version
         uses: github-actions-x/commit@v2.9
         with: 
-          commit-message: "Automated commit for version ${{ env.TAG_VERSION }}"
+          commit-message: "Automated commit for version ${{ steps.version.outputs.tag }}"
           name: "${{ github.actor }}" 
       - name: Create and push new version tag
         uses: actions-ecosystem/action-push-tag@v1.0.0
