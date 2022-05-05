@@ -23,13 +23,14 @@ jobs:
       - name: Get repo name
         id: repo
         uses: pimliprentiss/getreponame@composite
-      - name: Bump Version
-        run: ./bumpversion.sh 
-      - name: Set tag version
-        id: version
-        run: |
-          TAG="v$(cat VERSION)"
-          echo "::set-output name=tag::$TAG"
+      - id: version
+        uses: pimliprentiss/getreponame@master
+#      - name: Bump Version
+#        run: ./bumpversion.sh 
+#      - name: Set tag version
+#        id: version#        run: |
+#          TAG="v$(cat VERSION)"
+#          echo "::set-output name=tag::$TAG"
       - name: Commit new Version
         uses: github-actions-x/commit@v2.9
         with: 
