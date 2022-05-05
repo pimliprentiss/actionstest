@@ -24,7 +24,7 @@ jobs:
         id: repo
         uses: pimliprentiss/getreponame@composite
       - id: version
-        uses: pimliprentiss/getreponame@master
+        uses: pimliprentiss/bumpversion@master
 #      - name: Bump Version
 #        run: ./bumpversion.sh 
 #      - name: Set tag version
