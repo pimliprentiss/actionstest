@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2.4.2
       - name: Get repo name
         id: repo
-        uses: pimliprentiss/getreponame@test
+        uses: pimliprentiss/getreponame/subdir@test
       - id: version
         uses: pimliprentiss/actions/bumpversion@v1.0
 #      - name: Bump Version
