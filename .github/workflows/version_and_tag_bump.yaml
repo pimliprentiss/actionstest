@@ -22,9 +22,9 @@ jobs:
         uses: actions/checkout@v2.4.2
       - name: Get repo name
         id: repo
-        uses: pimliprentiss/getreponame@composite
+        uses: pimliprentiss/actions/utilities/getreponame@composite
       - id: version
-        uses: pimliprentiss/bumpversion@master
+        uses: pimliprentiss/actions/bumpversion@master
 #      - name: Bump Version
 #        run: ./bumpversion.sh 
 #      - name: Set tag version
