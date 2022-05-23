@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2.4.2
       - name: Get repo name
         id: repo
-        uses: pimliprentiss/actions/utilities/getreponame@composite
+        uses: pimliprentiss/actions/utilities/getreponame@master
       - id: version
         uses: pimliprentiss/actions/bumpversion@master
 #      - name: Bump Version
