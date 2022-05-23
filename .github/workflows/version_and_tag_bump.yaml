@@ -1,5 +1,6 @@
 name: version_and_tag_bump 
-on: 
+on:
+  workflow_dispatch:
   push:
     branches: 
       - main
